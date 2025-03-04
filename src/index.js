@@ -1,32 +1,30 @@
-//UC-03 Ability to create a new address book array and add new contacts to it
-
-const AddressBook = require('./services/AddressBook');
-const Contact = require('./models/Contacts');
-
-const addressBook = new AddressBook();
+const AddressBook = require("./services/AddressBook");
+const Contact = require("./models/Contacts");
 
 try {
-     // Adding Contacts to Friends Address Book
-     const contact1 = new Contact(
+    // Create Address Book
+    const myBook = new AddressBook();
+
+    // Add Contacts
+    const contact1 = new Contact(
         "Aman", "Sharma", "Green Street", "Mumbai", "Maharashtra", "400001", "9876543210", "aman.sharma@example.com"
     );
-    console.log(addressBook.addContact(contact1));
+    console.log(myBook.addContact(contact1));
 
     const contact2 = new Contact(
         "Neha", "Verma", "Lakeview Road", "Delhi", "Delhi", "110002", "8765432109", "neha.verma@example.com"
     );
-    console.log(addressBook.addContact(contact2));
-    console.log("All Contacts", addressBook.getAllContacts());
-    
-} catch (error) {
-    console.error("Error:", error.message);
-}
+    console.log(myBook.addContact(contact2));
 
-try {
-    const invalidContact = new Contact(
-        "pal","sin","In", "I", "100A01", "12345", "invalid-email"
-    );
-    console.log(addressBook.addContact(invalidContact));
+    // Finding a Contact
+    console.log("\n Finding Contact 'Aman':", myBook.findContact("Aman"));
+
+    // Editing Contact
+    console.log(myBook.editContact("Aman", { address: "Sunset Avenue", city: "Bangalore", phone: "9998887776" }));
+
+    // Displaying Updated Contacts
+    console.log("\n All Contacts After Editing:", myBook.getAllContacts());
+
 } catch (error) {
-    console.error("Error:", error.message);
+    console.error(" Error:", error.message);
 }

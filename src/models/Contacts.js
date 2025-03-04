@@ -1,5 +1,4 @@
-//UC-03 Ability to create a new address book array and add new contacts to it
-
+//UC-04 Ability to find existing contact person using their name and edit it
 
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phone, email) {
@@ -43,7 +42,7 @@ class Contact {
     }
 
     validatePhone(phone) {
-        const phoneRegex = /^[6-9][0-9]{9}$/; 
+        const phoneRegex = /^[6-9][0-9]{9}$/;
         if (!phoneRegex.test(phone)) {
             throw new Error("Invalid Phone Number. It must be a 10-digit number starting with 6-9.");
         }
@@ -58,3 +57,4 @@ class Contact {
 }
 
 module.exports = Contact;
+
