@@ -23,7 +23,7 @@ try {
 }
 
 // Display all contacts
-console.log("\nAll Contacts:", addressBook.getAllContacts());
+console.log("\nAll Contacts:",  addressBook.getAllContacts());
 
 // Display total contact count
 console.log("\nTotal Contacts in Address Book:", addressBook.getContactCount());
