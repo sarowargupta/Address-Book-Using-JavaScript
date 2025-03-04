@@ -1,4 +1,5 @@
 const Contact = require("../models/Contacts");
+
 class AddressBook {
     constructor() {
         this.contacts = [];
@@ -9,13 +10,7 @@ class AddressBook {
             throw new Error("Invalid contact object.");
         }
 
-        // Duplicate check using `filter`
-        const isDuplicate = this.contacts.filter(c => 
-            c.firstName.toLowerCase() === contact.firstName.toLowerCase() && 
-            c.lastName.toLowerCase() === contact.lastName.toLowerCase()
-        ).length > 0;
-
-        if (isDuplicate) {
+        if (this.contacts.some(c => c.firstName === contact.firstName && c.lastName === contact.lastName)) {
             throw new Error("Duplicate Contact! A person with the same name already exists.");
         }
 
@@ -27,44 +22,28 @@ class AddressBook {
         return this.contacts;
     }
 
-    findContact(firstName, lastName) {
-        return this.contacts.find(contact => 
-            contact.firstName.toLowerCase() === firstName.toLowerCase() && 
-            contact.lastName.toLowerCase() === lastName.toLowerCase()
-        );
+    // Search contacts by city
+    findContactsByCity(city) {
+        return this.contacts.filter(contact => contact.city.toLowerCase() === city.toLowerCase());
     }
 
-    editContact(firstName, lastName, updatedDetails) {
-        let contact = this.findContact(firstName, lastName);
-        if (!contact) {
-            throw new Error(`Contact with name '${firstName} ${lastName}' not found.`);
-        }
-
-        Object.assign(contact, updatedDetails);
-        return `Contact '${firstName} ${lastName}' updated successfully!`;
+    // Search contacts by state
+    findContactsByState(state) {
+        return this.contacts.filter(contact => contact.state.toLowerCase() === state.toLowerCase());
     }
 
-    deleteContact(firstName, lastName) {
-        const index = this.contacts.findIndex(contact => 
-            contact.firstName.toLowerCase() === firstName.toLowerCase() && 
-            contact.lastName.toLowerCase() === lastName.toLowerCase()
-        );
-
-        if (index === -1) {
-            throw new Error(`Contact with name '${firstName} ${lastName}' not found.`);
-        }
-        this.contacts.splice(index, 1);
-        return `Contact '${firstName} ${lastName}' deleted successfully!`;
+    // Get all names of people in a particular city
+    getNamesByCity(city) {
+        return this.contacts
+            .filter(contact => contact.city.toLowerCase() === city.toLowerCase())
+            .map(contact => `${contact.firstName} ${contact.lastName}`);
     }
 
-    // Using `reduce` to count contacts
-    getContactCount() {
-        return this.contacts.reduce(count => count + 1, 0);
-    }
-
-    // Using `map` to list all full names
-    getAllNames() {
-        return this.contacts.map(contact => `${contact.firstName} ${contact.lastName}`);
+    // Get total count of people in a particular state
+    getCountByState(state) {
+        return this.contacts
+            .filter(contact => contact.state.toLowerCase() === state.toLowerCase())
+            .reduce((count) => count + 1, 0);
     }
 }
 
