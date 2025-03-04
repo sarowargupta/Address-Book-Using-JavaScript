@@ -1,4 +1,3 @@
-//UC-07 Ability to ensure there is no duplicate entry of the same person
 const AddressBook = require("./services/AddressBook");
 const Contact = require("./models/Contacts");
 
@@ -12,22 +11,21 @@ try {
     const contact2 = new Contact("Priya", "Kapoor", "MG Road", "Bangalore", "Karnataka", "560001", "9234567890", "priya.kapoor@example.com");
     console.log(addressBook.addContact(contact2));
 
+    const contact3 = new Contact("Amit", "Shah", "Salt Lake", "Kolkata", "West Bengal", "700091", "9345678901", "amit.shah@example.com");
+    console.log(addressBook.addContact(contact3));
 
-       // Attempt to add duplicate contact
-       const duplicateContact = new Contact("Rahul", "Mehta", "Bangalore", "India", "Karnataka", "560001", "9998887776", "aman.duplicate@example.com");
-       console.log(addressBook.addContact(duplicateContact)); // This should throw an error
-   
-    
+    // Search Contacts by City
+    console.log("\nPeople in Kolkata:", addressBook.findContactsByCity("Kolkata"));
+
+    // Search Contacts by State
+    console.log("\nPeople in West Bengal:", addressBook.findContactsByState("West Bengal"));
+
+    // Get all names in a city
+    console.log("\nNames of people in Kolkata:", addressBook.getNamesByCity("Kolkata"));
+
+    // Get total count in a state
+    console.log("\nNumber of people in West Bengal:", addressBook.getCountByState("West Bengal"));
+
 } catch (error) {
     console.error("Error:", error.message);
 }
-
-// Display all contacts
-console.log("\nAll Contacts:", addressBook.getAllContacts());
-
-// Display total contact count
-console.log("\nTotal Contacts in Address Book:", addressBook.getContactCount());
-
-// Display all contact names
-console.log("\nAll Contact Names:", addressBook.getAllNames());
-
