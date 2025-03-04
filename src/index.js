@@ -1,24 +1,32 @@
-//UC-02 Ability to ensure valid contacts are added..
+//UC-03 Ability to create a new address book array and add new contacts to it
 
 const AddressBook = require('./services/AddressBook');
 const Contact = require('./models/Contacts');
 
-try {
-    const addressBook = new AddressBook();
+const addressBook = new AddressBook();
 
-    // Valid Contact
-    let contact1 = new Contact(
-        "Sarowar", "Gupta", "New Park City", "Bhopal", "Madhya Pradesh", "78701", "9876543210", "sro.user@example.com"
+try {
+     // Adding Contacts to Friends Address Book
+     const contact1 = new Contact(
+        "Aman", "Sharma", "Green Street", "Mumbai", "Maharashtra", "400001", "9876543210", "aman.sharma@example.com"
     );
     console.log(addressBook.addContact(contact1));
 
-    // Invalid Contact (First Name too short)
-    let contact2 = new Contact(
-        "Sa", "Gupta", "New Park City", "Bho", "Madhya", "33101", "8364743333", "hello.world@email.com"
+    const contact2 = new Contact(
+        "Neha", "Verma", "Lakeview Road", "Delhi", "Delhi", "110002", "8765432109", "neha.verma@example.com"
     );
-    console.log(addressBook.addContact(contact2));  // This will throw an error
+    console.log(addressBook.addContact(contact2));
+    console.log("All Contacts", addressBook.getAllContacts());
+    
+} catch (error) {
+    console.error("Error:", error.message);
+}
 
-    console.log("\nTotal Contacts in Address Book:", addressBook.getAllContacts());
+try {
+    const invalidContact = new Contact(
+        "pal","sin","In", "I", "100A01", "12345", "invalid-email"
+    );
+    console.log(addressBook.addContact(invalidContact));
 } catch (error) {
     console.error("Error:", error.message);
 }

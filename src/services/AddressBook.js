@@ -1,23 +1,15 @@
-//UC-02 Ability to ensure valid contacts are added..
-
+//UC-03 Ability to create a new address book array and add new contacts to it
 const Contact = require('../models/Contacts');
 
-//address book class
 class AddressBook {
     constructor() {
         this.contacts = [];
     }
 
     addContact(contact) {
-        if (!(contact instanceof Contact)) {
-            throw new Error("Invalid contact object.");
-        }
-
-        // Prevent duplicate entries based on phone/email
         if (this.contacts.some(c => c.phone === contact.phone || c.email === contact.email)) {
-            throw new Error("Contact with the same phone or email already exists.");
+            throw new Error("Duplicate Contact! Phone number or Email exists already.");
         }
-
         this.contacts.push(contact);
         return "Contact added successfully!";
     }

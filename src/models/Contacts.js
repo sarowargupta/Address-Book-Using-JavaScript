@@ -1,55 +1,59 @@
-//UC-02 Ability to ensure valid contacts are added..
+//UC-03 Ability to create a new address book array and add new contacts to it
 
-//Contact class
+
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phone, email) {
-        this.firstName = this.validateName(firstName, "First Name");
-        this.lastName = this.validateName(lastName, "Last Name");
-        this.address = this.validateMinLength(address, "Address", 4);
-        this.city = this.validateMinLength(city, "City", 4);
-        this.state = this.validateMinLength(state, "State", 4);
-        this.zip = this.validateZip(zip);
-        this.phone = this.validatePhone(phone);
-        this.email = this.validateEmail(email);
+        this.validateName(firstName, "First Name");
+        this.validateName(lastName, "Last Name");
+        this.validateAddress(address, "Address");
+        this.validateAddress(city, "City");
+        this.validateAddress(state, "State");
+        this.validateZip(zip);
+        this.validatePhone(phone);
+        this.validateEmail(email);
+
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phone = phone;
+        this.email = email;
     }
 
-    validateName(name, field) {
+    validateName(name, fieldName) {
         const nameRegex = /^[A-Z][a-zA-Z]{2,}$/;
         if (!nameRegex.test(name)) {
-            throw new Error(`${field} must start with a capital letter and have at least 3 characters.`);
+            throw new Error(`${fieldName} must start with a capital letter and have at least 3 characters.`);
         }
-        return name;
     }
 
-    validateMinLength(value, field, minLength) {
-        if (value.length < minLength) {
-            throw new Error(`${field} must be at least ${minLength} characters long.`);
+    validateAddress(value, fieldName) {
+        if (value.length < 4) {
+            throw new Error(`${fieldName} must have at least 4 characters.`);
         }
-        return value;
     }
 
     validateZip(zip) {
-        const zipRegex = /^[0-9]{5,6}$/;
+        const zipRegex = /^[1-9][0-9]{5}$/;
         if (!zipRegex.test(zip)) {
-            throw new Error("Zip code must be 5 or 6 digits.");
+            throw new Error("Invalid Zip Code. It must be a 6-digit number.");
         }
-        return zip;
     }
 
     validatePhone(phone) {
-        const phoneRegex = /^\d{10}$/;
+        const phoneRegex = /^[6-9][0-9]{9}$/; 
         if (!phoneRegex.test(phone)) {
-            throw new Error("Phone number must be 10 digits.");
+            throw new Error("Invalid Phone Number. It must be a 10-digit number starting with 6-9.");
         }
-        return phone;
     }
 
     validateEmail(email) {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
-            throw new Error("Invalid email format.");
+            throw new Error("Invalid Email Address.");
         }
-        return email;
     }
 }
 
