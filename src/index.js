@@ -1,36 +1,24 @@
 const AddressBook = require("./services/AddressBook");
 const Contact = require("./models/Contacts");
 
+const addressBook = new AddressBook();
+
 try {
-    // Create Address Book
-    const myBook = new AddressBook();
-
     // Add Contacts
-    const contact1 = new Contact(
-        "Aman", "Sharma", "Green Street", "Mumbai", "Maharashtra", "400001", "9876543210", "aman.sharma@example.com"
-    );
-    console.log(myBook.addContact(contact1));
+    const contact1 = new Contact("Aman", "Sharma", "Mumbai", "India", "Maharashtra", "400001", "9876543210", "aman@example.com");
+    console.log(addressBook.addContact(contact1));
 
-    const contact2 = new Contact(
-        "Neha", "Verma", "Lakeview Road", "Delhi", "Delhi", "110002", "8765432109", "neha.verma@example.com"
-    );
-    console.log(myBook.addContact(contact2));
+    const contact2 = new Contact("Neha", "Verma", "Delhi", "India", "Delhi", "110002", "8765432109", "neha@example.com");
+    console.log(addressBook.addContact(contact2));
 
-    console.log("\nAll Contacts Before Deletion:", myBook.getAllContacts());
+    // Get Number of Contacts
+    console.log("\nTotal Contacts in Address Book:", addressBook.getContactCount());
 
-    // Finding a Contact
-    console.log("\nFinding Contact 'Aman':", myBook.findContact("Aman"));
+    // Delete a Contact
+    console.log(addressBook.deleteContact("Neha"));
 
-    // Editing Contact
-    console.log(myBook.editContact("Aman", { address: "Sunset Avenue", city: "Bangalore", phone: "9998887776" }));
-
-    console.log("\nAll Contacts After Editing:", myBook.getAllContacts());
-
-    // Deleting a Contact
-    console.log(myBook.deleteContact("Neha"));
-
-    console.log("\nAll Contacts After Deletion:", myBook.getAllContacts());
-
+    // Get Updated Contact Count After Deletion
+    console.log("\nTotal Contacts After Deletion:", addressBook.getContactCount());
 } catch (error) {
     console.error("Error:", error.message);
 }

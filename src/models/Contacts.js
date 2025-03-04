@@ -1,4 +1,4 @@
-//UC-05 Ability to find person with name delete it from the array
+//UC-05 Ability to find number of contacts in the address book
 
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phone, email) {

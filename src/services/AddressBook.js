@@ -46,6 +46,11 @@ class AddressBook {
         return `Contact '${firstName}' deleted successfully!`;
     }
 
+     //Method to count contacts using `reduce` function
+     getContactCount() {
+        return this.contacts.reduce(count => count + 1, 0);
+    }
+
 }
 
 module.exports = AddressBook;
