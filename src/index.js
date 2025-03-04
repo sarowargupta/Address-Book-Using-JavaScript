@@ -16,15 +16,21 @@ try {
     );
     console.log(myBook.addContact(contact2));
 
+    console.log("\nAll Contacts Before Deletion:", myBook.getAllContacts());
+
     // Finding a Contact
-    console.log("\n Finding Contact 'Aman':", myBook.findContact("Aman"));
+    console.log("\nFinding Contact 'Aman':", myBook.findContact("Aman"));
 
     // Editing Contact
     console.log(myBook.editContact("Aman", { address: "Sunset Avenue", city: "Bangalore", phone: "9998887776" }));
 
-    // Displaying Updated Contacts
-    console.log("\n All Contacts After Editing:", myBook.getAllContacts());
+    console.log("\nAll Contacts After Editing:", myBook.getAllContacts());
+
+    // Deleting a Contact
+    console.log(myBook.deleteContact("Neha"));
+
+    console.log("\nAll Contacts After Deletion:", myBook.getAllContacts());
 
 } catch (error) {
-    console.error(" Error:", error.message);
+    console.error("Error:", error.message);
 }

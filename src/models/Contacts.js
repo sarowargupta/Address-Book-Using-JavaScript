@@ -1,4 +1,4 @@
-//UC-04 Ability to find existing contact person using their name and edit it
+//UC-05 Ability to find person with name delete it from the array
 
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phone, email) {
