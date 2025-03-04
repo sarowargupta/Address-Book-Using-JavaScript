@@ -1,4 +1,4 @@
-//UC-05 Ability to find number of contacts in the address book
+//UC-07 Ability to ensure there is no duplicate entry of the same person
 
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phone, email) {

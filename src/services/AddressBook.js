@@ -1,8 +1,6 @@
 const Contact = require("../models/Contacts");
-
 class AddressBook {
-    constructor(name) {
-        this.name = name;
+    constructor() {
         this.contacts = [];
     }
 
@@ -11,46 +9,63 @@ class AddressBook {
             throw new Error("Invalid contact object.");
         }
 
-        if (this.contacts.some(c => c.phone === contact.phone || c.email === contact.email)) {
-            throw new Error("Duplicate Contact! Phone number or Email exists already.");
+        // Duplicate check using `filter`
+        const isDuplicate = this.contacts.filter(c => 
+            c.firstName.toLowerCase() === contact.firstName.toLowerCase() && 
+            c.lastName.toLowerCase() === contact.lastName.toLowerCase()
+        ).length > 0;
+
+        if (isDuplicate) {
+            throw new Error("Duplicate Contact! A person with the same name already exists.");
         }
 
         this.contacts.push(contact);
-        return "Contact added successfully !";
+        return "Contact added successfully!";
     }
 
     getAllContacts() {
         return this.contacts;
     }
 
-    findContact(firstName) {
-        return this.contacts.find(contact => contact.firstName.toLowerCase() === firstName.toLowerCase());
+    findContact(firstName, lastName) {
+        return this.contacts.find(contact => 
+            contact.firstName.toLowerCase() === firstName.toLowerCase() && 
+            contact.lastName.toLowerCase() === lastName.toLowerCase()
+        );
     }
 
-    editContact(firstName, updatedDetails) {
-        let contact = this.findContact(firstName);
+    editContact(firstName, lastName, updatedDetails) {
+        let contact = this.findContact(firstName, lastName);
         if (!contact) {
-            throw new Error(`Contact with name '${firstName}' not found.`);
+            throw new Error(`Contact with name '${firstName} ${lastName}' not found.`);
         }
 
         Object.assign(contact, updatedDetails);
-        return `Contact '${firstName}' updated successfully!`;
+        return `Contact '${firstName} ${lastName}' updated successfully!`;
     }
-    deleteContact(firstName) {
-        const index = this.contacts.findIndex(contact => contact.firstName.toLowerCase() === firstName.toLowerCase());
+
+    deleteContact(firstName, lastName) {
+        const index = this.contacts.findIndex(contact => 
+            contact.firstName.toLowerCase() === firstName.toLowerCase() && 
+            contact.lastName.toLowerCase() === lastName.toLowerCase()
+        );
+
         if (index === -1) {
-            throw new Error(`Contact with name '${firstName}' not found.`);
+            throw new Error(`Contact with name '${firstName} ${lastName}' not found.`);
         }
-
         this.contacts.splice(index, 1);
-        return `Contact '${firstName}' deleted successfully!`;
+        return `Contact '${firstName} ${lastName}' deleted successfully!`;
     }
 
-     //Method to count contacts using `reduce` function
-     getContactCount() {
+    // Using `reduce` to count contacts
+    getContactCount() {
         return this.contacts.reduce(count => count + 1, 0);
     }
 
+    // Using `map` to list all full names
+    getAllNames() {
+        return this.contacts.map(contact => `${contact.firstName} ${contact.lastName}`);
+    }
 }
 
 module.exports = AddressBook;
