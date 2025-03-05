@@ -22,28 +22,26 @@ class AddressBook {
         return this.contacts;
     }
 
-    // Search contacts by city
-    findContactsByCity(city) {
-        return this.contacts.filter(contact => contact.city.toLowerCase() === city.toLowerCase());
+     // View all persons by city
+     viewPersonsByCity() {
+        return this.contacts.reduce((result, contact) => {
+            if (!result[contact.city]) {
+                result[contact.city] = [];
+            }
+            result[contact.city].push(`${contact.firstName} ${contact.lastName}`);
+            return result;
+        }, {});
     }
 
-    // Search contacts by state
-    findContactsByState(state) {
-        return this.contacts.filter(contact => contact.state.toLowerCase() === state.toLowerCase());
-    }
-
-    // Get all names of people in a particular city
-    getNamesByCity(city) {
-        return this.contacts
-            .filter(contact => contact.city.toLowerCase() === city.toLowerCase())
-            .map(contact => `${contact.firstName} ${contact.lastName}`);
-    }
-
-    // Get total count of people in a particular state
-    getCountByState(state) {
-        return this.contacts
-            .filter(contact => contact.state.toLowerCase() === state.toLowerCase())
-            .reduce((count) => count + 1, 0);
+    // View all persons by state
+    viewPersonsByState() {
+        return this.contacts.reduce((result, contact) => {
+            if (!result[contact.state]) {
+                result[contact.state] = [];
+            }
+            result[contact.state].push(`${contact.firstName} ${contact.lastName}`);
+            return result;
+        }, {});
     }
 }
 

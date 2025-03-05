@@ -14,31 +14,15 @@ try {
     const contact3 = new Contact("Amit", "Shah", "Salt Lake", "Kolkata", "West Bengal", "700091", "9345678901", "amit.shah@example.com");
     console.log(addressBook.addContact(contact3));
 
-    // Search Contacts by City
-    console.log("\nPeople in Kolkata:", addressBook.findContactsByCity("Kolkata"));
+    const contact4 = new Contact("Suman", "Verma", "Jayanagar", "Bangalore", "Karnataka", "560011", "9456789012", "suman.verma@example.com");
+    console.log(addressBook.addContact(contact4));
 
-    // Search Contacts by State
-    console.log("\nPeople in West Bengal:", addressBook.findContactsByState("West Bengal"));
+    // View Persons Grouped by City
+    console.log("\nPersons Grouped by City:", addressBook.viewPersonsByCity());
 
-    // Get all names in a city
-    console.log("\nNames of people in Kolkata:", addressBook.getNamesByCity("Kolkata"));
-
-    // Get total count in a state
-    console.log("\nNumber of people in West Bengal:", addressBook.getCountByState("West Bengal"));
+    // View Persons Grouped by State
+    console.log("\nPersons Grouped by State:", addressBook.viewPersonsByState());
 
 } catch (error) {
     console.error("Error:", error.message);
 }
-<<<<<<< HEAD
-
-// Display all contacts
-console.log("\nAll Contacts:",  addressBook.getAllContacts());
-
-// Display total contact count
-console.log("\nTotal Contacts in Address Book:", addressBook.getContactCount());
-
-// Display all contact names
-console.log("\nAll Contact Names:", addressBook.getAllNames());
-
-=======
->>>>>>> UC-08-AbilitytoSearchPerson

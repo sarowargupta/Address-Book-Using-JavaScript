@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-//UC-08 Ability to ensure there is no duplicate entry of the same person
-=======
-//UC-08 Ability to search person in a particular city or state
->>>>>>> UC-08-AbilitytoSearchPerson
-
+// UC-09 Ability to view person by city or state
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phone, email) {
         this.validateName(firstName, "First Name");
