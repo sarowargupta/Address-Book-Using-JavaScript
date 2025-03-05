@@ -1,4 +1,4 @@
-// UC-11  Ability to sort the entries in the address book alphabetically bu Person's name
+// UC-12  Ability to sort the entries in the address book by city ,state, or zip
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phone, email) {
         this.firstName = firstName;
@@ -13,7 +13,7 @@ class Contact {
 
     // Overriding toString() for readable output
     toString() {
-        return `${this.firstName} ${this.lastName} - ${this.city}, ${this.state} (${this.phone})`;
+        return `${this.firstName} ${this.lastName} - ${this.city}, ${this.state} (${this.zip})`;
     }
 }
 

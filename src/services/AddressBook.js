@@ -1,4 +1,4 @@
-// UC-11  Ability to sort the entries in the address book alphabetically bu Person's name
+// UC-12  Ability to sort the entries in the address book by city ,state, or zip
 
 const Contact = require("../models/Contacts");
 
@@ -24,12 +24,22 @@ class AddressBook {
         return this.contacts;
     }
 
- // Sorting contacts alphabetically by first name
- sortContactsByName() {
-    return this.contacts.sort((a, b) => a.firstName.localeCompare(b.firstName));
+  // Sorting by City
+  sortByCity() {
+    return this.contacts.sort((a, b) => a.city.localeCompare(b.city));
 }
 
-// Display contacts
+// Sorting by State
+sortByState() {
+    return this.contacts.sort((a, b) => a.state.localeCompare(b.state));
+}
+
+// Sorting by Zip Code
+sortByZip() {
+    return this.contacts.sort((a, b) => a.zip - b.zip);
+}
+
+// Display Contacts
 displayContacts() {
     this.contacts.forEach(contact => console.log(contact.toString()));
 }
