@@ -1,4 +1,4 @@
-// UC-10  Ability to get number of contact person i.e. count by city or state
+// UC-11  Ability to sort the entries in the address book alphabetically bu Person's name
 
 const Contact = require("../models/Contacts");
 
@@ -24,21 +24,15 @@ class AddressBook {
         return this.contacts;
     }
 
-     // Get count of persons by city
-    getCountByCity() {
-        return this.contacts.reduce((result, contact) => {
-            result[contact.city] = (result[contact.city] || 0) + 1;
-            return result;
-        }, {});
-    }
+ // Sorting contacts alphabetically by first name
+ sortContactsByName() {
+    return this.contacts.sort((a, b) => a.firstName.localeCompare(b.firstName));
+}
 
-    // Get count of persons by state
-    getCountByState() {
-        return this.contacts.reduce((result, contact) => {
-            result[contact.state] = (result[contact.state] || 0) + 1;
-            return result;
-        }, {});
-    }
+// Display contacts
+displayContacts() {
+    this.contacts.forEach(contact => console.log(contact.toString()));
+}
 }
 
 module.exports = AddressBook;
