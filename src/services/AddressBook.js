@@ -1,3 +1,5 @@
+// UC-10  Ability to get number of contact person i.e. count by city or state
+
 const Contact = require("../models/Contacts");
 
 class AddressBook {
@@ -22,24 +24,18 @@ class AddressBook {
         return this.contacts;
     }
 
-     // View all persons by city
-     viewPersonsByCity() {
+     // Get count of persons by city
+    getCountByCity() {
         return this.contacts.reduce((result, contact) => {
-            if (!result[contact.city]) {
-                result[contact.city] = [];
-            }
-            result[contact.city].push(`${contact.firstName} ${contact.lastName}`);
+            result[contact.city] = (result[contact.city] || 0) + 1;
             return result;
         }, {});
     }
 
-    // View all persons by state
-    viewPersonsByState() {
+    // Get count of persons by state
+    getCountByState() {
         return this.contacts.reduce((result, contact) => {
-            if (!result[contact.state]) {
-                result[contact.state] = [];
-            }
-            result[contact.state].push(`${contact.firstName} ${contact.lastName}`);
+            result[contact.state] = (result[contact.state] || 0) + 1;
             return result;
         }, {});
     }

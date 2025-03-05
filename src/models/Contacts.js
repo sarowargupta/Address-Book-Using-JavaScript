@@ -1,4 +1,4 @@
-// UC-09 Ability to view person by city or state
+// UC-10  Ability to get number of contact person i.e. count by city or state
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phone, email) {
         this.validateName(firstName, "First Name");

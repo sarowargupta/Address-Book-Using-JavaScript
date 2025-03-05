@@ -1,3 +1,5 @@
+// UC-10  Ability to get number of contact person i.e. count by city or state
+
 const AddressBook = require("./services/AddressBook");
 const Contact = require("./models/Contacts");
 
@@ -17,11 +19,12 @@ try {
     const contact4 = new Contact("Suman", "Verma", "Jayanagar", "Bangalore", "Karnataka", "560011", "9456789012", "suman.verma@example.com");
     console.log(addressBook.addContact(contact4));
 
-    // View Persons Grouped by City
-    console.log("\nPersons Grouped by City:", addressBook.viewPersonsByCity());
+     // Get count of persons by city
+     console.log("\nCount of Persons by City:", addressBook.getCountByCity());
 
-    // View Persons Grouped by State
-    console.log("\nPersons Grouped by State:", addressBook.viewPersonsByState());
+     // Get count of persons by state
+     console.log("\nCount of Persons by State:", addressBook.getCountByState());
+
 
 } catch (error) {
     console.error("Error:", error.message);
